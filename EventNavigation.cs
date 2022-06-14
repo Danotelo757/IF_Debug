@@ -1,15 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventNavigation : MonoBehaviour
 {
+    [HideInInspector] public Event Event;
     public Event presentEvent;
     Dictionary<string, Event> actionDictionary = new Dictionary<string, Event>();
 
     GameController controller;
 
-    private void Awake()
+    void Awake()
     {
         controller = GetComponent<GameController>();
     }
@@ -23,29 +24,8 @@ public class EventNavigation : MonoBehaviour
         }
     }
 
-
-    void AttemptToProceed(string actionNoun)
-    {
-        if (actionDictionary.ContainsKey(actionNoun))
-        {
-            presentEvent = actionDictionary[actionNoun];
-            controller.LogStringWithReturn("You chose to " + actionNoun);
-            
-            controller.DisplayEventText();
-        }
-        else
-        {
-            controller.LogStringWithReturn("There is no action like " + actionNoun);
-        }
-    }
     public void ClearActions()
     {
         actionDictionary.Clear();
     }
-
-    //void DisplayOutcome(string outcome)
-    //{
-    //    action.outcome = outcome
-    //}
 }
-    

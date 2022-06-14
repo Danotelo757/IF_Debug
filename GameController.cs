@@ -8,7 +8,6 @@ public class GameController : MonoBehaviour
 {
     public Text displayText;
     [HideInInspector] public EventNavigation eventNavigation;
-    [HideInInspector] public Action action;
     [HideInInspector] public List<string> possibleEventActions = new List<string>();
 
     List<string> actionLog = new List<string>();
@@ -35,12 +34,9 @@ public class GameController : MonoBehaviour
         ClearCollectionsForNewEvent();
         ListActions();
         string joinedActionDescriptions = string.Join("\n", possibleEventActions.ToArray());
-        string outcomeText = action.outcome;
-        string combinedText = eventNavigation.presentEvent.description + "\n\n" + joinedActionDescriptions + outcomeText;
-
+        string combinedText = eventNavigation.presentEvent.description + "\n\n" + joinedActionDescriptions;
         LogStringWithReturn(combinedText);
-        LogStringWithReturn(outcomeText);
-        Debug.Log(outcomeText);
+
     }
 
     public void ListActions()
@@ -61,6 +57,6 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
